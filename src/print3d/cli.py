@@ -235,16 +235,20 @@ def cmd_status(_args: argparse.Namespace) -> int:
         blender = str(find_blender())
     except BlenderError as exc:
         blender = f"missing: {exc}"
+    try:
+        _orca = find_studio()
+    except StudioError:
+        _orca = None
     _print_json(
         {
             "blender": blender,
-            "studio": str(find_studio()),
+            "studio": str(_orca) if _orca else "not found (use OrcaSlicer MCP)",
             "profiles": str(profiles),
             "profiles_present": all(
                 (profiles / name).is_file()
                 for name in ("machine.json", "process.json", "filament.json")
             ),
-            "stops_at": "review in Bambu Studio",
+            "stops_at": "review in OrcaSlicer",
         }
     )
     return 0
@@ -268,7 +272,7 @@ def cmd_plan(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="print3d", description="Idea to a reviewable Bambu Studio project for an X2D"
+        prog="print3d", description="Idea to a reviewable OrcaSlicer project for an X2D"
     )
     sub = parser.add_subparsers(dest="cmd", required=True)
 
