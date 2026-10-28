@@ -37,6 +37,12 @@ def blender_locations() -> Iterator[Path]:
 def studio_locations() -> Iterator[Path]:
     for root in program_files_dirs():
         yield root / "OrcaSlicer" / "orca-slicer.exe"
+        yield root / "OrcaSlicer" / "OrcaSlicer.exe"
     # Linux paths
-    for path in ("/usr/bin/orca-slicer", "/usr/local/bin/orca-slicer", "/opt/orcaslicer/orca-slicer"):
+    for path in ("/usr/bin/orca-slicer", "/usr/local/bin/orca-slicer",
+                 "/opt/orcaslicer/orca-slicer", "/opt/OrcaSlicer/orca-slicer"):
+        yield Path(path)
+    # WSL Windows paths
+    for path in ("/mnt/c/Program Files/OrcaSlicer/orca-slicer.exe",
+                 "/mnt/c/Program Files/OrcaSlicer/OrcaSlicer.exe"):
         yield Path(path)

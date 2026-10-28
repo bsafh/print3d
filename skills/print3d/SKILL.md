@@ -138,3 +138,21 @@ X2D, 0.4 mm nozzle, 256 × 256 × 260 mm bed, 0.20 mm layers, Orca PLA Basic,
 textured PEI plate. **The pinned process has supports off** — that is why an
 overhang note is a real defect and not a setting to flip. Two nozzles: two
 colours print without a filament change.
+
+## OrcaSlicer MCP integration
+
+When OrcaSlicer is not available as a CLI binary (e.g. Windows-only install),
+use the OrcaSlicer MCP server for slicing instead:
+
+- **OrcaMCP** (OrcaSlicer fork with embedded MCP server):
+  https://github.com/HengeDK/OrcaMCP
+- **orcaslicer-mcp** (MCP server for OrcaSlicer with remote API):
+  https://github.com/MaxEllis/orcaslicer-mcp
+- **orca-slicer-mcp** (headless OrcaSlicer MCP via Xvfb):
+  https://github.com/dmikushin/orca-slicer-mcp
+- **claude-orcaslicer-mcp** (MCP server with preset management and G-code analysis):
+  https://github.com/ShreddyKrueger75/claude-orcaslicer-mcp
+
+The `make` command produces an unsliced `.3mf` project file that can be opened
+in any OrcaSlicer instance (Linux, Windows via WSL, or macOS) for slicing and
+printing.

@@ -389,6 +389,23 @@ analysis, as does the MCP tool's `project` argument.
 Every problem comes with a `fix` telling the agent what to change in the script.
 `jobs/<slug>/history.jsonl` keeps a record of each run.
 
+## OrcaSlicer MCP integration
+
+When OrcaSlicer is not available as a CLI binary (e.g. Windows-only install),
+the unsliced `.3mf` project file can be sliced using an OrcaSlicer MCP server:
+
+- **OrcaMCP** (OrcaSlicer fork with embedded MCP server):
+  https://github.com/HengeDK/OrcaMCP
+- **orcaslicer-mcp** (MCP server with remote API):
+  https://github.com/MaxEllis/orcaslicer-mcp
+- **orca-slicer-mcp** (headless OrcaSlicer MCP via Xvfb):
+  https://github.com/dmikushin/orca-slicer-mcp
+- **claude-orcaslicer-mcp** (MCP server with preset management and G-code analysis):
+  https://github.com/ShreddyKrueger75/claude-orcaslicer-mcp
+
+print3d discovers OrcaSlicer on both Linux and Windows (via WSL) paths
+automatically. Set `ORCA_SLICER_BIN` to override the binary location.
+
 ## Develop
 
 ```bash

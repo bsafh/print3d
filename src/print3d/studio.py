@@ -47,15 +47,24 @@ def find_studio(search_path: str | None = None) -> Path:
     which = shutil.which("orca-slicer", path=search_path)
     if which:
         candidates.append(which)
+    # Linux paths
     candidates.extend(
         [
             "/opt/homebrew/bin/orca-slicer",
-            "/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer",
             "/usr/bin/orca-slicer",
             "/usr/local/bin/orca-slicer",
             "/opt/orcaslicer/orca-slicer",
+            "/opt/OrcaSlicer/orca-slicer",
+            str(Path.home() / ".local/bin/orca-slicer"),
         ]
     )
+    # macOS paths
+    candidates.extend(
+        [
+            "/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer",
+        ]
+    )
+    # Windows via WSL paths are handled by studio_locations() in windows.py
     # Windows OrcaSlicer via WSL is handled by the OrcaSlicer MCP server,
     # not by the CLI binary discovery.
     for candidate in chain(candidates, studio_locations()):
